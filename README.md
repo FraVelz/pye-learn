@@ -34,6 +34,14 @@ apps/web   # Vite + React + TypeScript
 
 Ver `.env.example`. El frontend usa `VITE_API_URL`.
 
+Auth usa cookie `HttpOnly` (`pye_session`). En preview cross-origin (Vercel → Railway) configurar en la API:
+
+```bash
+COOKIE_SECURE=true
+COOKIE_SAMESITE=none
+CORS_ORIGINS=https://pye-learn.vercel.app
+```
+
 ## CI
 
 GitHub Actions en `.github/workflows/`:

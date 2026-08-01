@@ -31,7 +31,12 @@ func main() {
 	}
 	defer pool.Close()
 
-	api := &handlers.API{Store: store.New(pool), JWTSecret: cfg.JWTSecret}
+	api := &handlers.API{
+		Store:          store.New(pool),
+		JWTSecret:      cfg.JWTSecret,
+		CookieSecure:   cfg.CookieSecure,
+		CookieSameSite: cfg.CookieSameSite,
+	}
 
 	r := chi.NewRouter()
 	r.Use(chimw.RequestID)
@@ -50,7 +55,7 @@ func main() {
 		},
 		AllowedMethods:   []string{"GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type"},
-		AllowCredentials: false,
+		AllowCredentials: true,
 		MaxAge:           300,
 	}))
 
@@ -61,6 +66,7 @@ func main() {
 	r.Route("/api/v1", func(r chi.Router) {
 		r.Post("/auth/register", api.Register)
 		r.Post("/auth/login", api.Login)
+		r.Post("/auth/logout", api.Logout)
 
 		r.Group(func(r chi.Router) {
 			r.Use(middleware.JWT(cfg.JWTSecret))

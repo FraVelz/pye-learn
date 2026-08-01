@@ -8,7 +8,7 @@ export function LessonPage() {
   const { id = '' } = useParams()
   const [params] = useSearchParams()
   const courseSlug = params.get('course') || ''
-  const { token, user } = useAuth()
+  const { user, loading } = useAuth()
   const navigate = useNavigate()
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const [course, setCourse] = useState<Course | null>(null)
@@ -16,21 +16,22 @@ export function LessonPage() {
   const [busy, setBusy] = useState(false)
 
   useEffect(() => {
-    if (!token) {
+    if (loading) return
+    if (!user) {
       navigate('/login')
       return
     }
     api
-      .getLesson(id, token)
+      .getLesson(id)
       .then(setLesson)
       .catch((e: Error) => setError(e.message))
     if (courseSlug) {
       api
-        .getCourse(courseSlug, token)
+        .getCourse(courseSlug)
         .then(setCourse)
         .catch(() => undefined)
     }
-  }, [id, token, courseSlug, navigate])
+  }, [id, user, loading, courseSlug, navigate])
 
   const flatLessons = useMemo(
     () => course?.modules?.flatMap((m) => (m.lessons || []).map((l) => ({ ...l, moduleTitle: m.title }))) || [],
@@ -38,14 +39,14 @@ export function LessonPage() {
   )
 
   async function complete() {
-    if (!token) return
+    if (!user) return
     setBusy(true)
     try {
-      await api.completeLesson(id, token)
-      const refreshed = await api.getLesson(id, token)
+      await api.completeLesson(id)
+      const refreshed = await api.getLesson(id)
       setLesson(refreshed)
       if (courseSlug) {
-        setCourse(await api.getCourse(courseSlug, token))
+        setCourse(await api.getCourse(courseSlug))
       }
     } catch (e) {
       setError((e as Error).message)

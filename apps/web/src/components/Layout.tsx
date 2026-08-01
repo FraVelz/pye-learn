@@ -94,7 +94,7 @@ export function Layout() {
                 <span className="hidden text-sm md:inline" style={{ color: 'var(--pye-text-3)' }}>
                   {user.name}
                 </span>
-                <button type="button" className="btn btn-ghost !py-2 !px-3 text-sm" onClick={logout}>
+                <button type="button" className="btn btn-ghost !py-2 !px-3 text-sm" onClick={() => void logout()}>
                   Salir
                 </button>
               </>

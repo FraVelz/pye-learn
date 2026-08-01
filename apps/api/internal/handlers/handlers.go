@@ -16,9 +16,21 @@ import (
 )
 
 type API struct {
-	Store     *store.Store
-	JWTSecret string
+	Store          *store.Store
+	JWTSecret      string
+	CookieSecure   bool
+	CookieSameSite http.SameSite
 }
+
+func (a *API) cookieOpts(maxAge time.Duration) auth.CookieOpts {
+	return auth.CookieOpts{
+		Secure:   a.CookieSecure,
+		SameSite: a.CookieSameSite,
+		MaxAge:   maxAge,
+	}
+}
+
+const sessionTTL = 72 * time.Hour
 
 type registerReq struct {
 	Email    string `json:"email"`
@@ -53,12 +65,13 @@ func (a *API) Register(w http.ResponseWriter, r *http.Request) {
 		httpx.Error(w, http.StatusConflict, "email already registered")
 		return
 	}
-	token, err := auth.IssueToken(a.JWTSecret, u.ID, u.Email, u.Role, 72*time.Hour)
+	token, err := auth.IssueToken(a.JWTSecret, u.ID, u.Email, u.Role, sessionTTL)
 	if err != nil {
 		httpx.Error(w, http.StatusInternalServerError, "could not issue token")
 		return
 	}
-	httpx.JSON(w, http.StatusCreated, map[string]any{"token": token, "user": u})
+	auth.SetSessionCookie(w, token, a.cookieOpts(sessionTTL))
+	httpx.JSON(w, http.StatusCreated, map[string]any{"user": u})
 }
 
 func (a *API) Login(w http.ResponseWriter, r *http.Request) {
@@ -72,12 +85,18 @@ func (a *API) Login(w http.ResponseWriter, r *http.Request) {
 		httpx.Error(w, http.StatusUnauthorized, "invalid credentials")
 		return
 	}
-	token, err := auth.IssueToken(a.JWTSecret, u.ID, u.Email, u.Role, 72*time.Hour)
+	token, err := auth.IssueToken(a.JWTSecret, u.ID, u.Email, u.Role, sessionTTL)
 	if err != nil {
 		httpx.Error(w, http.StatusInternalServerError, "could not issue token")
 		return
 	}
-	httpx.JSON(w, http.StatusOK, map[string]any{"token": token, "user": u})
+	auth.SetSessionCookie(w, token, a.cookieOpts(sessionTTL))
+	httpx.JSON(w, http.StatusOK, map[string]any{"user": u})
+}
+
+func (a *API) Logout(w http.ResponseWriter, r *http.Request) {
+	auth.ClearSessionCookie(w, a.cookieOpts(0))
+	httpx.JSON(w, http.StatusOK, map[string]string{"status": "ok"})
 }
 
 func (a *API) Me(w http.ResponseWriter, r *http.Request) {

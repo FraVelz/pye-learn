@@ -3,7 +3,6 @@ package middleware
 import (
 	"context"
 	"net/http"
-	"strings"
 
 	"github.com/somospye/pye-learn/apps/api/internal/auth"
 	"github.com/somospye/pye-learn/apps/api/internal/httpx"
@@ -25,12 +24,12 @@ func ClaimsFrom(ctx context.Context) (*auth.Claims, bool) {
 func JWT(secret string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			h := r.Header.Get("Authorization")
-			if !strings.HasPrefix(h, "Bearer ") {
-				httpx.Error(w, http.StatusUnauthorized, "missing bearer token")
+			token := auth.TokenFromRequest(r)
+			if token == "" {
+				httpx.Error(w, http.StatusUnauthorized, "missing session")
 				return
 			}
-			claims, err := auth.ParseToken(secret, strings.TrimPrefix(h, "Bearer "))
+			claims, err := auth.ParseToken(secret, token)
 			if err != nil {
 				httpx.Error(w, http.StatusUnauthorized, "invalid token")
 				return
@@ -43,9 +42,9 @@ func JWT(secret string) func(http.Handler) http.Handler {
 func OptionalJWT(secret string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			h := r.Header.Get("Authorization")
-			if strings.HasPrefix(h, "Bearer ") {
-				if claims, err := auth.ParseToken(secret, strings.TrimPrefix(h, "Bearer ")); err == nil {
+			token := auth.TokenFromRequest(r)
+			if token != "" {
+				if claims, err := auth.ParseToken(secret, token); err == nil {
 					r = r.WithContext(WithClaims(r.Context(), claims))
 				}
 			}

@@ -5,29 +5,30 @@ import { useAuth } from '../lib/use-auth'
 
 export function CoursePage() {
   const { slug = '' } = useParams()
-  const { token, user } = useAuth()
+  const { user, loading } = useAuth()
   const navigate = useNavigate()
   const [course, setCourse] = useState<Course | null>(null)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
   useEffect(() => {
+    if (loading) return
     api
-      .getCourse(slug, token)
+      .getCourse(slug)
       .then(setCourse)
       .catch((e: Error) => setError(e.message))
-  }, [slug, token])
+  }, [slug, loading, user])
 
   async function enroll() {
-    if (!user || !token) {
+    if (!user) {
       navigate('/login')
       return
     }
     if (!course) return
     setBusy(true)
     try {
-      await api.enroll(course.id, token)
-      const refreshed = await api.getCourse(slug, token)
+      await api.enroll(course.id)
+      const refreshed = await api.getCourse(slug)
       setCourse(refreshed)
     } catch (e) {
       setError((e as Error).message)
