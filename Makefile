@@ -1,9 +1,16 @@
 export PATH := $(HOME)/.local/go/bin:$(HOME)/go/bin:$(PATH)
 
-.PHONY: db db-down migrate seed api web tidy help
+.PHONY: db db-down migrate seed api web tidy doctor lint help
 
 help:
-	@echo "Targets: db, db-down, migrate, seed, api, web, tidy"
+	@echo "Targets: db, db-down, migrate, seed, api, web, tidy, lint, doctor"
+
+lint:
+	cd apps/web && npm run lint
+	cd apps/api && go vet ./...
+
+doctor:
+	cd apps/web && npm run doctor
 
 db:
 	docker compose up -d db

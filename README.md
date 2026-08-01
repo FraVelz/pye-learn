@@ -34,6 +34,23 @@ apps/web   # Vite + React + TypeScript
 
 Ver `.env.example`. El frontend usa `VITE_API_URL`.
 
+## CI
+
+GitHub Actions en `.github/workflows/`:
+
+| Workflow | Qué hace |
+|---|---|
+| `ci.yml` | Go vet/build/test, web lint + build, Docker build de la API |
+| `react-doctor.yml` | Escaneo React Doctor sobre `apps/web` (advisory, no bloquea) |
+
+Local:
+
+```bash
+cd apps/web && npm run lint && npm run build
+cd apps/web && npm run doctor
+make doctor   # alias
+```
+
 ## Preview
 
 El frontend se puede desplegar en Vercel (root del proyecto o `apps/web` según configuración).

@@ -47,11 +47,11 @@ function authHeaders(token?: string | null): HeadersInit {
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, options)
-  const data = await res.json().catch(() => ({}))
   if (!res.ok) {
-    throw new Error((data as { error?: string }).error || res.statusText)
+    const data = (await res.json().catch(() => ({}))) as { error?: string }
+    throw new Error(data.error || res.statusText || `HTTP ${res.status}`)
   }
-  return data as T
+  return (await res.json()) as T
 }
 
 export const api = {

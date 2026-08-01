@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import logo from '../assets/logo.svg'
-import { useAuth } from '../lib/auth'
-import { useTheme } from '../lib/theme'
+import { useAuth } from '../lib/use-auth'
+import { useTheme } from '../lib/use-theme'
 
 function IconCamera() {
   return (

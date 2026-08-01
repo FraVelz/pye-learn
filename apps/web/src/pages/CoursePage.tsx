@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, type Course } from '../lib/api'
-import { useAuth } from '../lib/auth'
+import { useAuth } from '../lib/use-auth'
 
 export function CoursePage() {
   const { slug = '' } = useParams()

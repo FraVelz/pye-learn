@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { api, type Course, type Lesson } from '../lib/api'
-import { useAuth } from '../lib/auth'
+import { useAuth } from '../lib/use-auth'
 
 export function LessonPage() {
   const { id = '' } = useParams()
