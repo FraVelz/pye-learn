@@ -13,8 +13,8 @@ export function LoginPage() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const [email, setEmail] = useState('student@pye.local')
-  const [password, setPassword] = useState('student123')
+  const [email, setEmail] = useState('demo@local.dev')
+  const [password, setPassword] = useState('demo123')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -38,7 +38,7 @@ export function LoginPage() {
       <p className="eyebrow">Cuenta</p>
       <h1 className="mt-2 text-3xl font-extrabold tracking-tight">Iniciar sesión</h1>
       <p className="mt-2 text-sm muted">
-        Demo: student@pye.local / student123
+        Demo local: cualquier email/contraseña (sin backend; se guarda en tu navegador).
       </p>
       <form onSubmit={(e) => void onSubmit(e)} className="surface mt-6 space-y-4 p-6">
         <label className="block text-sm">

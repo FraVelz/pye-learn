@@ -4,18 +4,10 @@
 !.env.example
 .vercel
 
-# Go
-apps/api/bin/
-apps/api/tmp/
-*.exe
-*.test
-*.out
-vendor/
-
 # Node / web
-apps/web/node_modules/
-apps/web/dist/
-apps/web/.vite/
+node_modules/
+dist/
+.vite/
 
 # OS / IDE
 .DS_Store
@@ -29,6 +21,6 @@ Thumbs.db
 *.log
 
 # Local agent tooling
-apps/web/.agents/
-apps/web/.claude/
-apps/web/.cursor/
+.agents/
+.claude/
+.cursor/
