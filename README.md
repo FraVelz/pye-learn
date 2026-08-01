@@ -1,14 +1,23 @@
 # pye-learn
 
-Proyecto personal de academia web (**no oficial**, no afiliado a [SomosPYE](https://github.com/somospye)).
+Proyecto personal de academia web. **No oficial** · no afiliado a [SomosPYE](https://github.com/somospye).
 
-SPA en React + Vite. Auth, cursos y progreso son **mocks en el navegador** (`localStorage`). No hay backend ni credenciales reales.
+[![Demo](https://img.shields.io/badge/demo-pye--learn.vercel.app-008bf9)](https://pye-learn.vercel.app)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-El monorepo anterior (Go API + Postgres + Railway) quedó en la rama [`archive/monorepo`](https://github.com/FraVelz/pye-learn/tree/archive/monorepo).
+![Vista previa de pye-learn](docs/preview.png)
 
-## Requisitos
+## Qué es
 
-- Node.js 20+
+SPA en **React + Vite + TypeScript**. Catálogo de cursos, auth, inscripción y progreso con **mocks en el navegador** (`localStorage`). Sin backend ni credenciales reales.
+
+## Stack
+
+- React 19 · Vite · TypeScript · Tailwind CSS · React Router
+
+## Demo
+
+https://pye-learn.vercel.app
 
 ## Arranque local
 
@@ -16,8 +25,6 @@ El monorepo anterior (Go API + Postgres + Railway) quedó en la rama [`archive/m
 npm install
 npm run dev   # http://localhost:5173
 ```
-
-## Scripts
 
 ```bash
 npm run lint
@@ -27,4 +34,12 @@ npm run preview
 
 ## Deploy
 
-Vercel construye desde la raíz (`vercel.json`). No requiere variables de entorno ni proxy a API.
+Vercel construye desde la raíz (`vercel.json`). No requiere variables de entorno.
+
+## Historial monorepo
+
+El scaffold anterior (Go API + Postgres + Railway) está en la rama [`archive/monorepo`](https://github.com/FraVelz/pye-learn/tree/archive/monorepo).
+
+## Licencia
+
+[MIT](LICENSE)
