@@ -23,7 +23,7 @@ export function CoursesPage() {
         Empieza por donde quieras. Contenido práctico, directo y sin relleno.
       </p>
 
-      {loading && <p className="mt-10 text-white/50">Cargando cursos…</p>}
+      {loading && <p className="mt-10 muted">Cargando cursos…</p>}
       {error && <p className="mt-10 text-red-400">{error}</p>}
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

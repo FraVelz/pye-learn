@@ -59,26 +59,30 @@ export function LessonPage() {
     return <p className="mx-auto max-w-6xl px-4 py-12 text-red-400">{error}</p>
   }
   if (!lesson) {
-    return <p className="mx-auto max-w-6xl px-4 py-12 text-white/60">Cargando lección…</p>
+    return <p className="mx-auto max-w-6xl px-4 py-12 muted">Cargando lección…</p>
   }
 
   return (
     <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 lg:grid-cols-[260px_1fr]">
       <aside className="surface h-fit p-4">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-white/50">Temario</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide muted">Temario</p>
         <ul className="space-y-2 text-sm">
           {flatLessons.map((l) => (
             <li key={l.id}>
               <Link
                 to={`/lecciones/${l.id}?course=${courseSlug}`}
-                className={l.id === id ? 'font-semibold text-[var(--pye-blue)]' : 'text-[var(--pye-text-2)] hover:text-white'}
+                className={
+                  l.id === id
+                    ? 'font-semibold text-[var(--pye-blue)]'
+                    : 'text-[var(--pye-text-2)] hover:text-[var(--pye-text)]'
+                }
               >
                 {l.completed ? '✓ ' : ''}
                 {l.title}
               </Link>
             </li>
           ))}
-          {!flatLessons.length && <li className="text-white/40">Sin temario cargado</li>}
+          {!flatLessons.length && <li className="muted">Sin temario cargado</li>}
         </ul>
         {courseSlug && (
           <Link to={`/cursos/${courseSlug}`} className="mt-4 inline-block text-sm text-[var(--pye-blue)]">

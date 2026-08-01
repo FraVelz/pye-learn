@@ -28,14 +28,14 @@ export function LoginPage() {
     <section className="mx-auto flex min-h-[70vh] max-w-md flex-col justify-center px-4 py-12">
       <p className="eyebrow">Cuenta</p>
       <h1 className="mt-2 text-3xl font-extrabold tracking-tight">Iniciar sesión</h1>
-      <p className="mt-2 text-sm text-white/55">
+      <p className="mt-2 text-sm muted">
         Demo: student@pye.local / student123
       </p>
       <form onSubmit={(e) => void onSubmit(e)} className="surface mt-6 space-y-4 p-6">
         <label className="block text-sm">
           Email
           <input
-            className="mt-1 w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 outline-none focus:border-[var(--pye-border)]"
+            className="field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -45,7 +45,7 @@ export function LoginPage() {
         <label className="block text-sm">
           Contraseña
           <input
-            className="mt-1 w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 outline-none focus:border-[var(--pye-border)]"
+            className="field"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
@@ -57,7 +57,7 @@ export function LoginPage() {
           {busy ? 'Entrando…' : 'Entrar'}
         </button>
       </form>
-      <p className="mt-4 text-sm text-white/60">
+      <p className="mt-4 text-sm muted">
         ¿No tienes cuenta? <Link to="/register" className="text-[var(--pye-blue)]">Regístrate</Link>
       </p>
     </section>

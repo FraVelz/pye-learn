@@ -42,13 +42,13 @@ export function CoursePage() {
     return <p className="mx-auto max-w-6xl px-4 py-12 text-red-400">{error}</p>
   }
   if (!course) {
-    return <p className="mx-auto max-w-6xl px-4 py-12 text-white/60">Cargando…</p>
+    return <p className="mx-auto max-w-6xl px-4 py-12 muted">Cargando…</p>
   }
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
-      <p className="text-sm text-white/50">
-        <Link to="/cursos" className="hover:text-white">
+      <p className="text-sm muted">
+        <Link to="/cursos" className="hover:text-[var(--pye-text)]">
           Cursos
         </Link>{' '}
         / {course.title}
@@ -57,7 +57,7 @@ export function CoursePage() {
         <div className="max-w-2xl">
           <h1 className="text-4xl font-extrabold tracking-tight">{course.title}</h1>
           <p className="mt-4 text-lg text-[var(--pye-text-2)]">{course.description}</p>
-          <p className="mt-3 text-sm text-white/50">{course.duration_minutes} min · {course.is_free ? 'Gratis' : 'Pago'}</p>
+          <p className="mt-3 text-sm muted">{course.duration_minutes} min · {course.is_free ? 'Gratis' : 'Pago'}</p>
         </div>
         <div className="surface flex w-full max-w-sm flex-col gap-3 p-5">
           {course.enrolled ? (
@@ -91,7 +91,7 @@ export function CoursePage() {
                       {l.completed ? '✓ ' : ''}
                       {l.title}
                     </span>
-                    <span className="text-white/40">{l.duration_minutes}m</span>
+                    <span className="muted">{l.duration_minutes}m</span>
                   </li>
                 ))}
               </ul>

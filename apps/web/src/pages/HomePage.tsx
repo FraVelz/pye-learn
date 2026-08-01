@@ -24,7 +24,7 @@ export function HomePage() {
           </p>
 
           <div className="mb-6 flex justify-center">
-            <img src={logo} alt="PyE Learn" className="h-14 w-14 brightness-0 invert sm:h-16 sm:w-16" />
+            <img src={logo} alt="PyE Learn" className="brand-logo h-14 w-14 sm:h-16 sm:w-16" />
           </div>
 
           <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl">
@@ -45,9 +45,9 @@ export function HomePage() {
             </Link>
           </div>
 
-          <p className="mt-4 text-sm text-white/45">
+          <p className="mt-4 text-sm muted">
             Empieza cuando quieras. ¿Ya tienes cuenta?{' '}
-            <Link to="/login" className="font-semibold text-white hover:text-[var(--pye-blue)]">
+            <Link to="/login" className="font-semibold text-[var(--pye-text)] hover:text-[var(--pye-blue)]">
               Iniciar sesión
             </Link>
           </p>
@@ -57,15 +57,15 @@ export function HomePage() {
           <div className="stats-pill">
             <div>
               <strong className="text-2xl text-[var(--pye-blue)]">+{Math.max(courses.length, 3)}</strong>
-              <span className="text-xs text-white/50">cursos disponibles</span>
+              <span className="text-xs muted">cursos disponibles</span>
             </div>
             <div>
               <strong className="text-2xl text-[var(--pye-blue)]">+200h</strong>
-              <span className="text-xs text-white/50">contenido práctico</span>
+              <span className="text-xs muted">contenido práctico</span>
             </div>
             <div>
               <strong className="text-2xl text-[var(--pye-blue)]">PyE</strong>
-              <span className="text-xs text-white/50">comunidad aprendiendo</span>
+              <span className="text-xs muted">comunidad aprendiendo</span>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ export function HomePage() {
             <CourseCard key={c.id} course={c} badge={i === 0 ? 'Nuevo' : undefined} />
           ))}
           {!preview.length && (
-            <p className="text-white/50 sm:col-span-3">Cargando catálogo…</p>
+            <p className="muted sm:col-span-3">Cargando catálogo…</p>
           )}
         </div>
       </section>
