@@ -28,7 +28,7 @@ export function FaqSection() {
   const baseId = useId()
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-20" aria-labelledby={`${baseId}-title`}>
+    <section id="faq" className="mx-auto max-w-3xl px-4 py-20" aria-labelledby={`${baseId}-title`}>
       <div className="text-center">
         <p className="eyebrow">Dudas frecuentes</p>
         <h2 id={`${baseId}-title`} className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">

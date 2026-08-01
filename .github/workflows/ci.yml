@@ -3,8 +3,24 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+      - "apps/**"
+      - "scripts/**"
+      - "docker-compose.yml"
+      - "Makefile"
+      - "railway.json"
+      - "vercel.json"
+      - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
+    paths:
+      - "apps/**"
+      - "scripts/**"
+      - "docker-compose.yml"
+      - "Makefile"
+      - "railway.json"
+      - "vercel.json"
+      - ".github/workflows/ci.yml"
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}

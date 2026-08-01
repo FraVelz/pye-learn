@@ -141,6 +141,7 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   border: 1px solid transparent;
+  cursor: pointer;
   transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -325,6 +326,10 @@ html[data-theme="light"] .course-card::after {
   color: var(--pye-text-3);
 }
 
+#faq {
+  scroll-margin-top: 5rem;
+}
+
 .faq-item {
   border-bottom: 1px solid var(--pye-line);
 }
@@ -438,4 +443,114 @@ html[data-theme="light"] .course-card::after {
 
 .fade-up-delay {
   animation-delay: 0.12s;
+}
+
+/* —— Footer —— */
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--pye-line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--pye-surface) 55%, transparent) 0%, transparent 100%),
+    var(--pye-bg);
+}
+
+.site-footer-inner {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: 3rem 1rem 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .site-footer-inner {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+.site-footer-brand {
+  max-width: 22rem;
+}
+
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: 0.5rem;
+}
+
+.footer-brand-link:focus-visible {
+  outline-offset: 4px;
+}
+
+.site-footer-tagline {
+  margin: 1rem 0 0;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--pye-text-3);
+}
+
+.site-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.site-footer-heading {
+  margin: 0 0 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pye-text-4);
+}
+
+.site-footer-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer-link {
+  display: inline-block;
+  font-size: 0.925rem;
+  color: var(--pye-text-2);
+  border-radius: 0.35rem;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--pye-text);
+}
+
+.footer-link:focus-visible {
+  color: var(--pye-text);
+  outline-offset: 3px;
+}
+
+.site-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: 1.15rem 1rem 1.5rem;
+  border-top: 1px solid var(--pye-line);
+  font-size: 0.8rem;
+  color: var(--pye-text-4);
+}
+
+.site-footer-bottom p {
+  margin: 0;
+}
+
+.site-footer-bottom-note {
+  color: var(--pye-text-3);
 }
