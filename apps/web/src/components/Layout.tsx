@@ -46,6 +46,38 @@ function IconMoon() {
   )
 }
 
+function IconUser() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function userInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  if (parts.length === 0) return '?'
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+}
+
+function UserAvatar({ name }: { name?: string }) {
+  return (
+    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--pye-blue)] text-[0.65rem] font-semibold text-white">
+      {name ? userInitials(name) : <IconUser />}
+    </span>
+  )
+}
+
+const authChipClass =
+  'nav-link inline-flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium hover:bg-[var(--pye-hover)]'
+
 export function Layout() {
   const { user, logout } = useAuth()
   const { theme, toggleTheme } = useTheme()
@@ -91,30 +123,20 @@ export function Layout() {
             </button>
 
             {user ? (
-              <>
-                <span className="hidden text-sm md:inline" style={{ color: 'var(--pye-text-3)' }}>
-                  {user.name}
-                </span>
-                <button type="button" className="btn btn-ghost !py-2 !px-3 text-sm" onClick={() => void logout()}>
+              <div className={authChipClass}>
+                <UserAvatar name={user.name} />
+                <span className="hidden md:inline">{user.name}</span>
+                <button
+                  type="button"
+                  className="nav-link opacity-80 transition hover:opacity-100"
+                  onClick={() => void logout()}
+                >
                   Salir
                 </button>
-              </>
+              </div>
             ) : (
-              <Link
-                to="/login"
-                className="nav-link inline-flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium hover:bg-[var(--pye-hover)]"
-              >
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--pye-blue)] text-white">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path
-                      d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+              <Link to="/login" className={authChipClass}>
+                <UserAvatar />
                 Iniciar sesión
               </Link>
             )}
