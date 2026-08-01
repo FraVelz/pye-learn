@@ -1,0 +1,28 @@
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Go
+apps/api/bin/
+apps/api/tmp/
+*.exe
+*.test
+*.out
+vendor/
+
+# Node / web
+apps/web/node_modules/
+apps/web/dist/
+apps/web/.vite/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log

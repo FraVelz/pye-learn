@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pye-learn-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pye
+      POSTGRES_PASSWORD: pye
+      POSTGRES_DB: pye_learn
+    ports:
+      - "5432:5432"
+    volumes:
+      - pye_learn_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pye -d pye_learn"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pye_learn_pg:
