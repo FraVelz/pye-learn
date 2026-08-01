@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -38,7 +39,15 @@ func main() {
 	r.Use(chimw.Logger)
 	r.Use(chimw.Recoverer)
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   cfg.CORSOrigins,
+		AllowedOrigins: cfg.CORSOrigins,
+		AllowOriginFunc: func(r *http.Request, origin string) bool {
+			for _, o := range cfg.CORSOrigins {
+				if o == "*" || o == origin {
+					return true
+				}
+			}
+			return strings.HasSuffix(origin, ".vercel.app")
+		},
 		AllowedMethods:   []string{"GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type"},
 		AllowCredentials: false,
