@@ -8,11 +8,11 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
-	"github.com/somospye/pye-learn/apps/api/internal/auth"
-	"github.com/somospye/pye-learn/apps/api/internal/httpx"
-	"github.com/somospye/pye-learn/apps/api/internal/middleware"
-	"github.com/somospye/pye-learn/apps/api/internal/models"
-	"github.com/somospye/pye-learn/apps/api/internal/store"
+	"github.com/FraVelz/pye-learn/apps/api/internal/auth"
+	"github.com/FraVelz/pye-learn/apps/api/internal/httpx"
+	"github.com/FraVelz/pye-learn/apps/api/internal/middleware"
+	"github.com/FraVelz/pye-learn/apps/api/internal/models"
+	"github.com/FraVelz/pye-learn/apps/api/internal/store"
 )
 
 type API struct {

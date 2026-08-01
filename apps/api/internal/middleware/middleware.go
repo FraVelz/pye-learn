@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/somospye/pye-learn/apps/api/internal/auth"
-	"github.com/somospye/pye-learn/apps/api/internal/httpx"
+	"github.com/FraVelz/pye-learn/apps/api/internal/auth"
+	"github.com/FraVelz/pye-learn/apps/api/internal/httpx"
 )
 
 type ctxKey string

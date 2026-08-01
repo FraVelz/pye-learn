@@ -38,7 +38,7 @@ export function Footer() {
             </span>
           </Link>
           <p className="site-footer-tagline">
-            Academia de la comunidad PyE. Cursos prácticos, directos y sin relleno.
+            Proyecto personal no oficial. Cursos prácticos, directos y sin relleno.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export function Footer() {
       </div>
 
       <div className="site-footer-bottom">
-        <p>© {YEAR} PyE Learn · Comunidad PyE</p>
+        <p>© {YEAR} pye-learn · proyecto personal no oficial</p>
         <p className="site-footer-bottom-note">Aprende con estructura</p>
       </div>
     </footer>

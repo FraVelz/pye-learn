@@ -4,11 +4,11 @@ import (
 	"context"
 	"log"
 
-	"github.com/somospye/pye-learn/apps/api/internal/auth"
-	"github.com/somospye/pye-learn/apps/api/internal/config"
-	"github.com/somospye/pye-learn/apps/api/internal/db"
-	"github.com/somospye/pye-learn/apps/api/internal/models"
-	"github.com/somospye/pye-learn/apps/api/internal/store"
+	"github.com/FraVelz/pye-learn/apps/api/internal/auth"
+	"github.com/FraVelz/pye-learn/apps/api/internal/config"
+	"github.com/FraVelz/pye-learn/apps/api/internal/db"
+	"github.com/FraVelz/pye-learn/apps/api/internal/models"
+	"github.com/FraVelz/pye-learn/apps/api/internal/store"
 )
 
 func main() {

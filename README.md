@@ -1,6 +1,6 @@
 # pye-learn
 
-Plataforma web de aprendizaje de la comunidad PyE.
+Proyecto personal de plataforma web de aprendizaje (**no oficial**, no afiliado a [SomosPYE](https://github.com/somospye)).
 
 Monorepo: API en Go (`apps/api`) + frontend React (`apps/web`) + Postgres.
 

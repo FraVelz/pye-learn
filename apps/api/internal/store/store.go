@@ -8,7 +8,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/somospye/pye-learn/apps/api/internal/models"
+	"github.com/FraVelz/pye-learn/apps/api/internal/models"
 )
 
 var ErrNotFound = errors.New("not found")

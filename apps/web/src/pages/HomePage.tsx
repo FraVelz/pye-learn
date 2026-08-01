@@ -20,11 +20,11 @@ export function HomePage() {
         <div className="mx-auto max-w-4xl text-center fade-up">
           <p className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--pye-blue)]">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--pye-blue)] shadow-[0_0_10px_#008bf9]" />
-            Academia de la comunidad PyE
+            Academia personal · no oficial
           </p>
 
           <div className="mb-6 flex justify-center">
-            <img src={logo} alt="PyE Learn" className="brand-logo h-14 w-14 sm:h-16 sm:w-16" />
+            <img src={logo} alt="pye-learn" className="brand-logo h-14 w-14 sm:h-16 sm:w-16" />
           </div>
 
           <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl">
@@ -64,8 +64,8 @@ export function HomePage() {
               <span className="text-xs muted">contenido práctico</span>
             </div>
             <div>
-              <strong className="text-2xl text-[var(--pye-blue)]">PyE</strong>
-              <span className="text-xs muted">comunidad aprendiendo</span>
+              <strong className="text-2xl text-[var(--pye-blue)]">MVP</strong>
+              <span className="text-xs muted">proyecto personal</span>
             </div>
           </div>
         </div>

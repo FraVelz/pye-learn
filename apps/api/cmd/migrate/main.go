@@ -6,9 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/somospye/pye-learn/apps/api/internal/config"
-	"github.com/somospye/pye-learn/apps/api/internal/db"
-	"github.com/somospye/pye-learn/apps/api/internal/migrate"
+	"github.com/FraVelz/pye-learn/apps/api/internal/config"
+	"github.com/FraVelz/pye-learn/apps/api/internal/db"
+	"github.com/FraVelz/pye-learn/apps/api/internal/migrate"
 )
 
 func main() {

@@ -2,7 +2,7 @@ import { useId, useState } from 'react'
 
 const FAQS = [
   {
-    q: '¿Qué incluye PyE Learn?',
+    q: '¿Qué incluye pye-learn?',
     a: 'Cursos prácticos con temario, lecciones en markdown/video y seguimiento de progreso. La idea es aprender con estructura, sin saltar entre mil recursos.',
   },
   {
@@ -18,8 +18,8 @@ const FAQS = [
     a: 'Crea una cuenta, entra a Cursos, inscríbete y abre la primera lección. Tu progreso queda guardado en tu perfil.',
   },
   {
-    q: '¿Habrá más cursos?',
-    a: 'Sí. Este MVP es la base de la plataforma de cursos de la comunidad PyE; el catálogo se irá ampliando.',
+    q: '¿Es un proyecto oficial de SomosPYE?',
+    a: 'No. Es un proyecto personal no oficial y no afiliado a SomosPYE. El catálogo se irá ampliando según el ritmo del autor.',
   },
 ]
 

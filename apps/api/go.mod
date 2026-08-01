@@ -1,4 +1,4 @@
-module github.com/somospye/pye-learn/apps/api
+module github.com/FraVelz/pye-learn/apps/api
 
 go 1.25.0
 

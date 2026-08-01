@@ -13,12 +13,12 @@ import (
 	"github.com/go-chi/chi/v5"
 	chimw "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
-	"github.com/somospye/pye-learn/apps/api/internal/config"
-	"github.com/somospye/pye-learn/apps/api/internal/db"
-	"github.com/somospye/pye-learn/apps/api/internal/handlers"
-	"github.com/somospye/pye-learn/apps/api/internal/httpx"
-	"github.com/somospye/pye-learn/apps/api/internal/middleware"
-	"github.com/somospye/pye-learn/apps/api/internal/store"
+	"github.com/FraVelz/pye-learn/apps/api/internal/config"
+	"github.com/FraVelz/pye-learn/apps/api/internal/db"
+	"github.com/FraVelz/pye-learn/apps/api/internal/handlers"
+	"github.com/FraVelz/pye-learn/apps/api/internal/httpx"
+	"github.com/FraVelz/pye-learn/apps/api/internal/middleware"
+	"github.com/FraVelz/pye-learn/apps/api/internal/store"
 )
 
 func main() {
