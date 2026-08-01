@@ -47,7 +47,7 @@ export function HomePage() {
 
           <p className="mt-4 text-sm muted">
             Empieza cuando quieras. ¿Ya tienes cuenta?{' '}
-            <Link to="/login" className="font-semibold text-[var(--pye-text)] hover:text-[var(--pye-blue)]">
+            <Link to="/login" className="inline-link font-semibold text-[var(--pye-text)] hover:text-[var(--pye-blue)]">
               Iniciar sesión
             </Link>
           </p>
@@ -75,7 +75,7 @@ export function HomePage() {
         <p className="eyebrow">Empieza por donde quieras</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Cursos para subir de nivel</h2>
-          <Link to="/cursos" className="text-sm font-semibold text-[var(--pye-blue)] hover:underline">
+          <Link to="/cursos" className="inline-link text-sm font-semibold text-[var(--pye-blue)] hover:underline">
             Ver todos →
           </Link>
         </div>

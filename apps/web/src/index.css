@@ -30,6 +30,8 @@ html[data-theme="dark"] {
   --pye-header-bg: color-mix(in srgb, var(--pye-bg) 80%, transparent);
   --pye-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   --pye-btn-glow: 0 0 24px rgba(0, 139, 249, 0.35);
+  --pye-focus: #4db3ff;
+  --pye-focus-ring: 0 0 0 3px rgba(77, 179, 255, 0.45);
 }
 
 /* Light — mismos azules PyE sobre superficie clara */
@@ -61,6 +63,8 @@ html[data-theme="light"] {
   --pye-header-bg: color-mix(in srgb, var(--pye-bg) 85%, white);
   --pye-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
   --pye-btn-glow: 0 0 20px rgba(0, 139, 249, 0.25);
+  --pye-focus: #005bab;
+  --pye-focus-ring: 0 0 0 3px rgba(0, 91, 171, 0.35);
 }
 
 * {
@@ -90,6 +94,39 @@ a {
   text-decoration: none;
 }
 
+/* Keyboard focus — visible only for keyboard / assistive nav */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--pye-focus);
+  outline-offset: 3px;
+  box-shadow: var(--pye-focus-ring);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  transform: translateY(-140%);
+  padding: 0.65rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--pye-blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--pye-shadow);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0.75rem);
+  outline-offset: 2px;
+}
+
 .brand-logo {
   filter: var(--pye-logo-filter);
 }
@@ -109,6 +146,18 @@ a {
 
 .btn:hover {
   transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--pye-focus);
+  outline-offset: 3px;
+  box-shadow: var(--pye-btn-glow), var(--pye-focus-ring);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn-primary {
@@ -150,6 +199,11 @@ a {
   background: var(--pye-hover);
   color: var(--pye-text);
   border-color: var(--pye-line-strong);
+}
+
+.btn-icon:focus-visible {
+  color: var(--pye-text);
+  border-color: var(--pye-focus);
 }
 
 .chip-ia {
@@ -230,6 +284,12 @@ html[data-theme="light"] .course-card::after {
   border-color: color-mix(in srgb, var(--pye-border) 45%, transparent);
 }
 
+.course-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--pye-focus);
+  outline-offset: 4px;
+}
+
 .surface {
   background: color-mix(in srgb, var(--pye-surface) 92%, transparent);
   border: 1px solid var(--pye-line);
@@ -247,8 +307,12 @@ html[data-theme="light"] .course-card::after {
   outline: none;
 }
 
-.field:focus {
-  border-color: var(--pye-border);
+.field:focus,
+.field:focus-visible {
+  border-color: var(--pye-focus);
+  outline: 2px solid var(--pye-focus);
+  outline-offset: 1px;
+  box-shadow: var(--pye-focus-ring);
 }
 
 .eyebrow {
@@ -271,7 +335,9 @@ html[data-theme="light"] .course-card::after {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.15rem 0;
+  padding: 1.15rem 0.35rem;
+  margin-inline: -0.35rem;
+  border-radius: 0.5rem;
   background: none;
   border: 0;
   color: var(--pye-text);
@@ -279,6 +345,46 @@ html[data-theme="light"] .course-card::after {
   font-weight: 600;
   text-align: left;
   cursor: pointer;
+}
+
+.faq-item button:hover {
+  background: var(--pye-hover);
+}
+
+.faq-item button:focus-visible {
+  outline-offset: 2px;
+}
+
+.nav-link {
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.nav-link:focus-visible {
+  outline-offset: 2px;
+}
+
+.temario-summary {
+  cursor: pointer;
+  list-style: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.35rem;
+  margin: -0.25rem -0.35rem;
+}
+
+.temario-summary::-webkit-details-marker {
+  display: none;
+}
+
+.temario-summary:focus-visible {
+  outline: 2px solid var(--pye-focus);
+  outline-offset: 2px;
+  box-shadow: var(--pye-focus-ring);
+}
+
+.inline-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .faq-plus {

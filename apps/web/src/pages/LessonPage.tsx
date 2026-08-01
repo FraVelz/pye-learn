@@ -85,7 +85,7 @@ export function LessonPage() {
           {!flatLessons.length && <li className="muted">Sin temario cargado</li>}
         </ul>
         {courseSlug && (
-          <Link to={`/cursos/${courseSlug}`} className="mt-4 inline-block text-sm text-[var(--pye-blue)]">
+          <Link to={`/cursos/${courseSlug}`} className="inline-link mt-4 inline-block text-sm text-[var(--pye-blue)]">
             ← Volver al curso
           </Link>
         )}

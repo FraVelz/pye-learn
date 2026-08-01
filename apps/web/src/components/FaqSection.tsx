@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 const FAQS = [
   {
@@ -25,12 +25,15 @@ const FAQS = [
 
 export function FaqSection() {
   const [open, setOpen] = useState<number | null>(0)
+  const baseId = useId()
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-20">
+    <section className="mx-auto max-w-3xl px-4 py-20" aria-labelledby={`${baseId}-title`}>
       <div className="text-center">
         <p className="eyebrow">Dudas frecuentes</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Preguntas antes de unirte</h2>
+        <h2 id={`${baseId}-title`} className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          Preguntas antes de unirte
+        </h2>
         <p className="mx-auto mt-3 max-w-xl text-[var(--pye-text-2)]">
           Lo esencial para decidir con tranquilidad si la academia encaja contigo.
         </p>
@@ -39,15 +42,27 @@ export function FaqSection() {
       <div className="mt-10">
         {FAQS.map((item, i) => {
           const isOpen = open === i
+          const panelId = `${baseId}-panel-${i}`
+          const buttonId = `${baseId}-btn-${i}`
           return (
             <div key={item.q} className="faq-item">
-              <button type="button" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
+              <button
+                type="button"
+                id={buttonId}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpen(isOpen ? null : i)}
+              >
                 <span>{item.q}</span>
                 <span className="faq-plus" aria-hidden>
                   {isOpen ? '−' : '+'}
                 </span>
               </button>
-              {isOpen && <p className="pb-5 pr-8 text-[var(--pye-text-2)] leading-relaxed">{item.a}</p>}
+              {isOpen && (
+                <p id={panelId} role="region" aria-labelledby={buttonId} className="pb-5 pr-8 text-[var(--pye-text-2)] leading-relaxed">
+                  {item.a}
+                </p>
+              )}
             </div>
           )
         })}

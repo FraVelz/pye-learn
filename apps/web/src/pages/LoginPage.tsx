@@ -58,7 +58,7 @@ export function LoginPage() {
         </button>
       </form>
       <p className="mt-4 text-sm muted">
-        ¿No tienes cuenta? <Link to="/register" className="text-[var(--pye-blue)]">Regístrate</Link>
+        ¿No tienes cuenta? <Link to="/register" className="inline-link text-[var(--pye-blue)]">Regístrate</Link>
       </p>
     </section>
   )

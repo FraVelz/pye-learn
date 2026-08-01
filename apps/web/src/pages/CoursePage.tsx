@@ -83,7 +83,7 @@ export function CoursePage() {
         <div className="mt-4 space-y-4">
           {(course.modules || []).map((m) => (
             <details key={m.id} open className="surface p-4">
-              <summary className="cursor-pointer font-semibold">{m.title}</summary>
+              <summary className="temario-summary font-semibold">{m.title}</summary>
               <ul className="mt-3 space-y-2">
                 {(m.lessons || []).map((l) => (
                   <li key={l.id} className="flex items-center justify-between gap-3 text-sm text-[var(--pye-text-2)]">

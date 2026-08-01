@@ -51,23 +51,26 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <a href="#contenido" className="skip-link">
+        Saltar al contenido
+      </a>
       <header
         className="sticky top-0 z-30 border-b backdrop-blur-xl"
         style={{ borderColor: 'var(--pye-line)', background: 'var(--pye-header-bg)' }}
       >
         <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-3.5">
-          <Link to="/" className="flex items-center gap-2.5 justify-self-start">
+          <Link to="/" className="nav-link flex items-center gap-2.5 justify-self-start">
             <img src={logo} alt="" className="brand-logo h-8 w-8" />
             <span className="text-[1.05rem] font-extrabold tracking-tight">
               pye<span className="text-[var(--pye-blue)]">learn</span>
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium sm:flex" style={{ color: 'var(--pye-text-2)' }}>
+          <nav aria-label="Principal" className="flex items-center gap-2 text-sm font-medium" style={{ color: 'var(--pye-text-2)' }}>
             <NavLink
               to="/cursos"
               className={({ isActive }) =>
-                `inline-flex items-center gap-2 transition hover:opacity-100 ${isActive ? 'text-[var(--pye-text)]' : 'opacity-80'}`
+                `nav-link inline-flex items-center gap-2 transition hover:opacity-100 ${isActive ? 'text-[var(--pye-text)]' : 'opacity-80'}`
               }
             >
               <IconCamera />
@@ -98,7 +101,7 @@ export function Layout() {
             ) : (
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium hover:bg-[var(--pye-hover)]"
+                className="nav-link inline-flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium hover:bg-[var(--pye-hover)]"
               >
                 <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--pye-blue)] text-white">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -118,7 +121,7 @@ export function Layout() {
         </div>
       </header>
 
-      <main className="flex-1">
+      <main id="contenido" className="flex-1" tabIndex={-1}>
         <Outlet />
       </main>
 
