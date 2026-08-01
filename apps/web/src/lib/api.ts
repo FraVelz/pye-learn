@@ -1,4 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
+// Empty = same-origin (Vite proxy local / Vercel rewrite → Railway). Avoids third-party cookie blocks.
+const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
 export type User = {
   id: string

@@ -25,13 +25,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const login = useCallback(async (email: string, password: string) => {
-    const res = await api.login({ email, password })
-    setUser(res.user)
+    await api.login({ email, password })
+    // Confirm cookie session (not just response body) so UI matches real auth.
+    const me = await api.me()
+    setUser(me)
   }, [])
 
   const register = useCallback(async (name: string, email: string, password: string) => {
-    const res = await api.register({ name, email, password })
-    setUser(res.user)
+    await api.register({ name, email, password })
+    const me = await api.me()
+    setUser(me)
   }, [])
 
   const logout = useCallback(async () => {

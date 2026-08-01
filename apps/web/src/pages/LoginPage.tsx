@@ -1,10 +1,18 @@
 import { useState, type FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../lib/use-auth'
+
+function safeReturnTo(value: unknown): string {
+  if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//')) {
+    return '/cursos'
+  }
+  return value
+}
 
 export function LoginPage() {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   const [email, setEmail] = useState('student@pye.local')
   const [password, setPassword] = useState('student123')
   const [error, setError] = useState('')
@@ -16,7 +24,8 @@ export function LoginPage() {
     setError('')
     try {
       await login(email, password)
-      navigate('/cursos')
+      const from = (location.state as { from?: string } | null)?.from
+      navigate(safeReturnTo(from))
     } catch (err) {
       setError((err as Error).message)
     } finally {
@@ -58,7 +67,10 @@ export function LoginPage() {
         </button>
       </form>
       <p className="mt-4 text-sm muted">
-        ¿No tienes cuenta? <Link to="/register" className="inline-link text-[var(--pye-blue)]">Regístrate</Link>
+        ¿No tienes cuenta?{' '}
+        <Link to="/register" state={location.state} className="inline-link text-[var(--pye-blue)]">
+          Regístrate
+        </Link>
       </p>
     </section>
   )

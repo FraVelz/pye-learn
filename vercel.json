@@ -3,5 +3,18 @@
   "outputDirectory": "apps/web/dist",
   "installCommand": "cd apps/web && npm install",
   "framework": null,
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api-production-8ae7.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/healthz",
+      "destination": "https://api-production-8ae7.up.railway.app/healthz"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }

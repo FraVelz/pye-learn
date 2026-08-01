@@ -32,9 +32,16 @@ apps/web   # Vite + React + TypeScript
 
 ## Variables de entorno
 
-Ver `.env.example`. El frontend usa `VITE_API_URL`.
+Ver `.env.example`.
 
-Auth usa cookie `HttpOnly` (`pye_session`). En preview cross-origin (Vercel → Railway) configurar en la API:
+Auth usa cookie `HttpOnly` (`pye_session`). El front llama a `/api/...` en el **mismo origen**:
+
+- Local: proxy de Vite → `localhost:8080`
+- Preview: rewrite de Vercel → Railway
+
+Así la cookie es first-party y no la bloquea Chrome. Dejá `VITE_API_URL` vacío en Vercel.
+
+Si pegás el front directo a otro dominio de API (sin proxy), necesitás:
 
 ```bash
 COOKIE_SECURE=true
@@ -61,5 +68,5 @@ make doctor   # alias
 
 ## Preview
 
-El frontend se puede desplegar en Vercel (root del proyecto o `apps/web` según configuración).
-La API necesita un host aparte (Go + Postgres).
+Frontend: Vercel (root del monorepo; `vercel.json` hace proxy de `/api` a Railway).
+API: Railway (`apps/api` + Postgres).

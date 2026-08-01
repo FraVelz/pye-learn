@@ -21,7 +21,7 @@ export function CoursePage() {
 
   async function enroll() {
     if (!user) {
-      navigate('/login')
+      navigate('/login', { state: { from: `/cursos/${slug}` } })
       return
     }
     if (!course) return

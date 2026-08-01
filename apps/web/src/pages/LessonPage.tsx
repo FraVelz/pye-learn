@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { api, type Course, type Lesson } from '../lib/api'
 import { useAuth } from '../lib/use-auth'
@@ -10,6 +10,7 @@ export function LessonPage() {
   const courseSlug = params.get('course') || ''
   const { user, loading } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const [course, setCourse] = useState<Course | null>(null)
   const [error, setError] = useState('')
@@ -18,7 +19,7 @@ export function LessonPage() {
   useEffect(() => {
     if (loading) return
     if (!user) {
-      navigate('/login')
+      navigate('/login', { state: { from: `${location.pathname}${location.search}` } })
       return
     }
     api
@@ -31,7 +32,7 @@ export function LessonPage() {
         .then(setCourse)
         .catch(() => undefined)
     }
-  }, [id, user, loading, courseSlug, navigate])
+  }, [id, user, loading, courseSlug, navigate, location.pathname, location.search])
 
   const flatLessons = useMemo(
     () => course?.modules?.flatMap((m) => (m.lessons || []).map((l) => ({ ...l, moduleTitle: m.title }))) || [],
